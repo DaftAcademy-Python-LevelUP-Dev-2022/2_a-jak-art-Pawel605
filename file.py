@@ -1,5 +1,7 @@
 def greeter(func):
-    pass
+    def inner(*args):
+        return "Aloha " + func(*args).title()
+    return inner
 
 
 def sums_of_str_elements_are_equal(func):
