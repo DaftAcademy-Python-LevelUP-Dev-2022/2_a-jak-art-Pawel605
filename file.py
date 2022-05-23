@@ -1,8 +1,8 @@
-# task 2.1
 from collections import namedtuple
 from functools import wraps
 
 
+# task 2.1
 def greeter(func):
     def inner(*args):
         return "Aloha " + func(*args).title()
@@ -56,5 +56,15 @@ def format_output(*required_keys):
     return decorator
 
 
+# task 2.4
 def add_method_to_instance(klass):
-    pass
+    def decorator(func):
+        @classmethod
+        @wraps(func)
+        def wrapper(self):
+            return func()
+        setattr(klass, func.__name__, wrapper)
+
+        return func
+
+    return decorator
